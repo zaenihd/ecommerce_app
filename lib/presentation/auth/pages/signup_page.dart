@@ -1,13 +1,13 @@
 import 'package:ecommerce_app/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_app/common/widget/button.dart';
 import 'package:ecommerce_app/presentation/auth/pages/enter_password.dart';
-import 'package:ecommerce_app/presentation/auth/pages/signup_page.dart';
+import 'package:ecommerce_app/presentation/auth/pages/signin.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,20 @@ class SigninPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _signinText(context),
+            _createAccountText(context),
+            _firstNameField(),
+            const SizedBox(
+              height: 20.0,
+            ),
+            _lastNameField(),
+            const SizedBox(
+              height: 20.0,
+            ),
             _emailField(),
+            const SizedBox(
+              height: 20.0,
+            ),
+            _passwordField(),
             const SizedBox(
               height: 20.0,
             ),
@@ -33,16 +45,34 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _signinText(BuildContext context) {
+  Widget _createAccountText(BuildContext context) {
     return const Text(
-      "Sign in",
+      "Create Account",
       style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget _firstNameField() {
+    return const TextField(
+      decoration: InputDecoration(hintText: "FirstName"),
+    );
+  }
+
+  Widget _lastNameField() {
+    return const TextField(
+      decoration: InputDecoration(hintText: "LastName"),
     );
   }
 
   Widget _emailField() {
     return const TextField(
-      decoration: InputDecoration(hintText: "Enter email"),
+      decoration: InputDecoration(hintText: "Email"),
+    );
+  }
+
+  Widget _passwordField() {
+    return const TextField(
+      decoration: InputDecoration(hintText: "Password"),
     );
   }
 
@@ -63,10 +93,11 @@ class SigninPage extends StatelessWidget {
           text: "Do you have an account?",
           style: TextStyle(color: Colors.black)),
       TextSpan(
-        text: "Create One",
-        style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        text: "Sign in",
+        style:
+            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         recognizer: TapGestureRecognizer()..onTap = () {
-           AppNavigator.push(context, const SignupPage());
+          AppNavigator.pushReplacement(context, const SigninPage());
         },
       ),
     ]));

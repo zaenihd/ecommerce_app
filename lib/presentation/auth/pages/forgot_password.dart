@@ -1,12 +1,11 @@
 import 'package:ecommerce_app/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_app/common/widget/button.dart';
-import 'package:ecommerce_app/presentation/auth/pages/forgot_password.dart';
+import 'package:ecommerce_app/presentation/auth/pages/enter_password.dart';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class EnterPassword extends StatelessWidget {
-  const EnterPassword({super.key});
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +15,15 @@ class EnterPassword extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back)),
             _signinText(context),
             _passwordField(),
             const SizedBox(
               height: 20.0,
             ),
-            _continueButton(),
+            _continueButton(context),
             const SizedBox(
               height: 10.0,
             ),
-            _forgotPassword(context)
           ],
         ),
       ),
@@ -39,7 +32,7 @@ class EnterPassword extends StatelessWidget {
 
   Widget _signinText(BuildContext context) {
     return const Text(
-      "Sign in",
+      "Forgot Password",
       style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
     );
   }
@@ -50,27 +43,14 @@ class EnterPassword extends StatelessWidget {
     );
   }
 
-  Widget _continueButton() {
+  Widget _continueButton(BuildContext context) {
     return ButtonCostum(
       title: "Continue",
-      onPressed: () {},
+      onPressed: () {
+        AppNavigator.push(context, const EnterPassword());
+      },
       color: Colors.purple,
     );
   }
 
-  Widget _forgotPassword(BuildContext context) {
-    return RichText(
-        text: TextSpan(children: [
-      const TextSpan(
-          text: "Forgot password?", style: TextStyle(color: Colors.black)),
-      TextSpan(
-        text: "Reset",
-        style:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        recognizer: TapGestureRecognizer()..onTap = () {
-          AppNavigator.push(context, const ForgotPasswordPage());
-        },
-      ),
-    ]));
-  }
 }
